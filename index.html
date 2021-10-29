@@ -2,5 +2,56 @@
 <head>
 </head>
 <body>
+    <p>Пацієнт:</p>
+    <input id="patient"></input>
+    <p>Дата народження (у форматі РРРР-ММ-ДД):</p>
+    <input id="birthday"></input>
+    <p>Стать:</p>
+    <select id="gender">
+        <option value="M">Чоловік</option>
+        <option value="F">Жінка</option>
+    </select>
+    <p>Дата забору:</p>
+    <input id="collection_time"></input>
+    <p>Дата результату:</p>
+    <input id="result_time"></input>
+    <br>
+    <button onclick="generate()">Генерувати</button>
+
+    <script>
+        function getRandomInt(min, max) {
+            min = Math.ceil(min);
+            max = Math.floor(max);
+            return Math.floor(Math.random() * (max - min + 1)) + min;
+        }
+        
+        var today = new Date();
+        var yesterday = new Date();
+        yesterday.setDate(yesterday.getDate() - 1);
+
+        document.querySelector('#collection_time').value = yesterday.getFullYear()+'-'+(yesterday.getMonth()+1)+'-'+yesterday.getDate()+' '+getRandomInt(10, 15)+':'+getRandomInt(10,59);
+        document.querySelector('#result_time').value = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+getRandomInt(10, 12)+':'+getRandomInt(12,59);
+    
+
+        params = {};
+        function generate(){
+            params['patient'] = document.querySelector('#patient').value;
+            params['birthday'] = document.querySelector('#birthday').value;
+            params['gender'] = document.querySelector('#gender').value;
+            order_id = getRandomInt(2800000, 3500000);
+            params['order_id'] = order_id;
+            params['order_no'] = order_id;
+            params['collection_time'] = document.querySelector('#collection_time').value;
+            params['result_time'] = document.querySelector('#result_time').value;
+
+            url = "https://esculab-covid.github.io/result.html?"
+            Object.keys(params).forEach(key => {
+                url += key + "=" + params[key] + "&";
+            });
+            url = encodeURI(url.slice(0, -1));
+
+            window.location.href = url;
+        }
+    </script>
 </body>
 </HTML>

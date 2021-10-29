@@ -378,9 +378,7 @@
             <h3 class="foundText">Result:  NEGATIVE</h3>
         </div>
 
-            <form action="https://tourists.esculab.com/generateTourist" method="post" class="find" target="_blank">
-                <button class="button" name="idOrder" value="" type="submit">Generate pdf</button>
-            </form>
+            <button class="button" name="idOrder" onclick="generate_pdf()">Generate pdf</button>
 
 
 
@@ -416,5 +414,12 @@
         } catch (error) {console.error(error)}
            
     });
+
+
+    function generate_pdf()
+    {
+        url = "https://esculab-covid.github.io/result.html?" + window.location.split('?')[1];
+        window.location.href = url;
+    }
 </script>
 </body></html>
