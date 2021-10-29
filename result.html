@@ -1,5 +1,6 @@
 <html>
 <head><meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+<title>Результат дослідження на COVID-19</title>
 <style type="text/css">
 span.cls_002{font-family:Arial,serif;font-size:12.1px;color:rgb(0,0,0);font-weight:normal;font-style:normal;text-decoration: none}
 span.i2{margin-left:11.00px}
@@ -109,15 +110,20 @@ div.cls_014{font-family:Times,serif;font-size:12.1px;color:rgb(0,0,0);font-weigh
     qr_url = "https://esculab-covid.github.io/qr.html?"
     params = getParamsFromUrl(window.location.href);
 
+	/*exiting if no parameters are given*/
+	if (Object.keys(params).length == 0){document.body.innerHTML = '';}
+	
     gender_en_to_ua = {'M':'M', 'F':'Ж'}
     Object.keys(params).forEach(key => {
-        qr_url += key + "=" + params[key] + "&";
+		if (key != "print"){
+			qr_url += key + "=" + params[key] + "&";
 
-        if (key == "gender"){params['gender'] = gender_en_to_ua[params['gender']]}
+			if (key == "gender"){params['gender'] = gender_en_to_ua[params['gender']]}
 
-        try {
-            document.querySelector('#'+key).innerHTML = params[key];     
-        } catch (error) {console.error(error)}
+			try {
+				document.querySelector('#'+key).innerHTML = params[key];     
+			} catch (error) {console.warn(error)}
+		}
            
     });
     qr_url = encodeURI(qr_url.slice(0, -1));
@@ -132,7 +138,8 @@ div.cls_014{font-family:Times,serif;font-size:12.1px;color:rgb(0,0,0);font-weigh
 
     QR_CODE.makeCode(qr_url);
 	
-	setTimeout(()=>{print()}, 3000);
+	/*spawning print window if requested*/
+	if (params['print'] == 1){print();}
 </script>
 </body>
 </html>

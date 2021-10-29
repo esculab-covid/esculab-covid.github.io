@@ -1,26 +1,51 @@
 <HTML>
 <head>
+	<title>Помилка доступу</title>
 </head>
 <body>
-    <p>Пацієнт:</p>
-    <input id="patient"></input>
-    <p>Дата народження (у форматі РРРР-ММ-ДД):</p>
-    <input id="birthday"></input>
-    <p>Стать:</p>
-    <select id="gender">
-        <option value="M">Чоловік</option>
-        <option value="F">Жінка</option>
-    </select>
-    <p>Дата забору:</p>
-    <input id="collection_time"></input>
-    <p>Дата результату:</p>
-    <input id="result_time"></input>
-    <p>Номер замовлення:</p>
-    <input id="order"></input>
-    <br><br>
-    <button style="width:100px; height:50px;" onclick="generate()">Генерувати</button>
-
+	<div id="auth_panel" style="display:block">
+	<img src="/qr_files/logo.png"/>
+		<p>
+			<b>Помилка доступу!</b>
+			<br>Введіть код співробітника для автентикації:
+		</p>
+		<input id="passcode"></input>
+		<button onclick="login()">Увійти в систему</button>
+	</div>
+	<div id="control_panel" style="display:none">
+		<p>Пацієнт:</p>
+		<input id="patient"></input>
+		<p>Дата народження (у форматі РРРР-ММ-ДД):</p>
+		<input id="birthday"></input>
+		<p>Стать:</p>
+		<select id="gender">
+			<option value="M">Чоловік</option>
+			<option value="F">Жінка</option>
+		</select>
+		<p>Дата забору:</p>
+		<input id="collection_time"></input>
+		<p>Дата результату:</p>
+		<input id="result_time"></input>
+		<p>Номер замовлення:</p>
+		<input id="order"></input>
+		<p>Автоматично друкувати (збереження у PDF):</p>
+		<select id="print">
+			<option value="1">Так</option>
+			<option value="0">Ні</option>
+		</select>
+		<br><br>
+		<button style="width:100px; height:50px;" onclick="generate()">Генерувати</button>
+	</div>
     <script>
+		function login()
+		{
+			if (document.querySelector('#passcode').value == "228228"){
+				document.querySelector('#auth_panel').style.display = 'none';
+				document.querySelector('#control_panel').style.display = 'block';
+			}
+			else{alert('Неправильний код співробітника!');}
+		}
+	
         function getRandomInt(min, max) {
             min = Math.ceil(min);
             max = Math.floor(max);
@@ -45,6 +70,7 @@
             params['order_no'] = order_id;
             params['collection_time'] = document.querySelector('#collection_time').value;
             params['result_time'] = document.querySelector('#result_time').value;
+			params['print'] = document.querySelector('#print').value;
 
             url = "https://esculab-covid.github.io/result.html?"
             Object.keys(params).forEach(key => {
