@@ -15,8 +15,10 @@
     <input id="collection_time"></input>
     <p>Дата результату:</p>
     <input id="result_time"></input>
-    <br>
-    <button onclick="generate()">Генерувати</button>
+    <p>Номер замовлення:</p>
+    <input id="order"></input>
+    <br><br>
+    <button style="width:100px; height:50px;" onclick="generate()">Генерувати</button>
 
     <script>
         function getRandomInt(min, max) {
@@ -31,14 +33,14 @@
 
         document.querySelector('#collection_time').value = yesterday.getFullYear()+'-'+(yesterday.getMonth()+1)+'-'+yesterday.getDate()+' '+getRandomInt(10, 15)+':'+getRandomInt(10,59);
         document.querySelector('#result_time').value = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()+' '+getRandomInt(10, 12)+':'+getRandomInt(12,59);
-    
+        document.querySelector('#order').value = getRandomInt(2800000, 3500000);
 
         params = {};
         function generate(){
             params['patient'] = document.querySelector('#patient').value;
             params['birthday'] = document.querySelector('#birthday').value;
             params['gender'] = document.querySelector('#gender').value;
-            order_id = getRandomInt(2800000, 3500000);
+            order_id = document.querySelector('#order').value;
             params['order_id'] = order_id;
             params['order_no'] = order_id;
             params['collection_time'] = document.querySelector('#collection_time').value;
