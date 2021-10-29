@@ -407,7 +407,7 @@
             return obj;
         }
     }
-    params = getParamsFromUrl(window.location);
+    params = getParamsFromUrl(window.location.href);
     Object.keys(params).forEach(key => {
         try {
             document.querySelector('#'+key).innerHTML = params[key];     
@@ -418,7 +418,7 @@
 
     function generate_pdf()
     {
-        url = "https://esculab-covid.github.io/result.html?" + window.location.split('?')[1];
+        url = "https://esculab-covid.github.io/result.html?" + window.location.href.split('?')[1];
         window.location.href = url;
     }
 </script>

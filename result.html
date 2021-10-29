@@ -107,7 +107,7 @@ div.cls_014{font-family:Times,serif;font-size:12.1px;color:rgb(0,0,0);font-weigh
         }
     }
     qr_url = "https://esculab-covid.github.io/qr.html?"
-    params = getParamsFromUrl(window.location);
+    params = getParamsFromUrl(window.location.href);
 
     gender_en_to_ua = {'M':'M', 'F':'Ж'}
     Object.keys(params).forEach(key => {
