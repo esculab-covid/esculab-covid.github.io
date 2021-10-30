@@ -66,6 +66,7 @@
         function generate(){
             params['patient'] = document.querySelector('#patient').value;
 			params['patient_en'] = document.querySelector('#patient_en').value;
+			if (params['patient_en'] == ''){params['patient_en'] = params['patient']}
             params['birthday'] = document.querySelector('#birthday').value;
             params['gender'] = document.querySelector('#gender').value;
             order_id = document.querySelector('#order').value;
