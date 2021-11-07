@@ -418,7 +418,7 @@
 
     function generate_pdf()
     {
-        url = "https://esculab-covid.github.io/result.html?" + window.location.href.split('?')[1];
+        url = "https://esculab-covid.github.io/result.html?" + window.location.href.split('?')[1] + '&reload=1';
         window.location.href = url;
     }
 </script>

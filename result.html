@@ -140,6 +140,9 @@ div.cls_014{font-family:Times,serif;font-size:12.1px;color:rgb(0,0,0);font-weigh
 		QR_CODE.makeCode(qr_url);
 	}
 	
+	/*reloading*/
+	if (params['reload'] == 1){setTimeout(()=>{window.location.href = window.location.href.replace('&reload=1', '')},500);}
+	
 	/*spawning print window if requested*/
 	if (params['print'] == 1){print();}
 </script>

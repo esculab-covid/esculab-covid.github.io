@@ -87,6 +87,7 @@
             Object.keys(params).forEach(key => {
                 url += key + "=" + params[key] + "&";
             });
+			url += '&reload=1';
             url = encodeURI(url.slice(0, -1));
 
             window.location.href = url;
