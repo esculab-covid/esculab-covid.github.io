@@ -28,6 +28,11 @@
 		<input id="collection_time"></input>
 		<p>Дата результату:</p>
 		<input id="result_time"></input>
+		<p>QR код:</p>
+		<select id="qr">
+			<option value="1">Так</option>
+			<option value="0">Ні</option>
+		</select>
 		<p>Номер замовлення:</p>
 		<input id="order"></input>
 		<p>Автоматично друкувати (збереження у PDF):</p>
@@ -35,13 +40,14 @@
 			<option value="1">Так</option>
 			<option value="0">Ні</option>
 		</select>
+
 		<br><br>
 		<button style="width:100px; height:50px;" onclick="generate()">Генерувати</button>
 	</div>
     <script>
 		function login()
 		{
-			if (document.querySelector('#passcode').value == "228337"){
+			if (document.querySelector('#passcode').value == "228228"){
 				document.querySelector('#auth_panel').style.display = 'none';
 				document.querySelector('#control_panel').style.display = 'block';
 			}
@@ -75,6 +81,7 @@
             params['collection_time'] = document.querySelector('#collection_time').value;
             params['result_time'] = document.querySelector('#result_time').value;
 			params['print'] = document.querySelector('#print').value;
+			params['qr'] = document.querySelector('#qr').value;
 
             url = "https://esculab-covid.github.io/result.html?"
             Object.keys(params).forEach(key => {
